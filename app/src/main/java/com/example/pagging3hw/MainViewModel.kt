@@ -6,24 +6,33 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import com.example.pagging3hw.RetrofitHelper.ApiInterface
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel(
-    private val dao: ItemDao
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val apiInterface: ApiInterface
 ) : ViewModel() {
     val data =
-        Pager(PagingConfig(pageSize = 20, enablePlaceholders = false, initialLoadSize = 20),
-            ) {
-            MainPagingSource(dao)
+        Pager(
+            PagingConfig(pageSize = 20, enablePlaceholders = false, initialLoadSize = 20),
+        ) {
+            MainPagingSource(apiInterface)
         }.flow.cachedIn(viewModelScope)
 }
 
-class MainViewModelFactory(
-    private val dao: ItemDao
-): ViewModelProvider.Factory {
-    override fun <T: ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(dao) as T
-        }
-        throw IllegalArgumentException("Неизвестный класс ViewModel")
-    }
- }
+
+//class MainViewModelFactory(
+//    private val apiInterface: ApiInterface
+//) : ViewModelProvider.Factory {
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+//            return MainViewModel(apiInterface) as T
+//        }
+//        throw IllegalArgumentException("Неизвестный класс ViewModel")
+//    }
+//}
+

@@ -2,8 +2,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
-    id("com.google.devtools.ksp")
     kotlin("plugin.serialization") version "2.1.0"
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -52,13 +53,15 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //Paging
     implementation("androidx.paging:paging-runtime:3.3.5")
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.activity:activity-ktx:1.9.3")
-    // Room
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
+
+    // Hilt
+    implementation(libs.hilt.android.v244)
+    implementation(libs.androidx.activity)
+    kapt("com.google.dagger:hilt-compiler:2.48.1")
 
     // Retrofit
     implementation(libs.retrofit)

@@ -1,9 +1,7 @@
 package com.example.pagging3hw.RetrofitHelper.FilmsModels
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 
-@Entity(tableName = "doc")
+
 data class Doc(
     val ageRating: Int,
     val alternativeName: String,
@@ -18,7 +16,6 @@ data class Doc(
     val facts: List<Fact>,
     val fees: Fees,
     val genres: List<Genre>,
-    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val isSeries: Boolean,
     val lists: List<String>,

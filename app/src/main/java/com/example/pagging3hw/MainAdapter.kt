@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pagging3hw.RetrofitHelper.FilmsModels.Doc
 import com.example.pagging3hw.databinding.ListItemBinding
 
-class MainAdapter: PagingDataAdapter<Doc, MainAdapter.MainViewHolder>(DIFF_CALLBACK) {
+class MainAdapter : PagingDataAdapter<Doc, MainAdapter.MainViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Doc>(){
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Doc>() {
 
-            override fun areItemsTheSame(oldItem: Doc, newItem: Doc): Boolean = oldItem.id == newItem.id
-            override fun areContentsTheSame( oldItem: Doc, newItem: Doc): Boolean = oldItem == newItem
+            override fun areItemsTheSame(oldItem: Doc, newItem: Doc): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: Doc, newItem: Doc): Boolean =
+                oldItem == newItem
 
         }
     }
@@ -23,7 +26,7 @@ class MainAdapter: PagingDataAdapter<Doc, MainAdapter.MainViewHolder>(DIFF_CALLB
         parent: ViewGroup,
         viewType: Int
     ): MainViewHolder {
-        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent,false)
+        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return MainViewHolder(binding)
     }
@@ -34,14 +37,14 @@ class MainAdapter: PagingDataAdapter<Doc, MainAdapter.MainViewHolder>(DIFF_CALLB
     ) {
         val item = getItem(position)
         holder.binding.apply {
-            textViewName.text = item?.enName.toString()
-            textViewRating.text = item?.rating.toString()
+            textViewName.text = item?.name
+            textViewRating.text = item?.rating?.kp.toString()
             textViewYear.text = item?.year.toString()
         }
     }
 
 
-    class MainViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root){
+    class MainViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 }

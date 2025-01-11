@@ -15,6 +15,17 @@ interface ApiInterface {
     @GET("v1.4/movie?year=2023")
     suspend fun getFilms(
         @Query("limit") limit: Int = 30,
-        @Query("page") page: Int = 1,
+        @Query("page") page: Int,
     ): Response<Films>
+
+
+//    companion object {
+//        private const val BASE_URL = "https://api.kinopoisk.dev/"
+//
+//
+//        operator fun invoke() : ApiInterface =
+//            Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
+//                .build().create(ApiInterface::class.java)
+//
+//    }
 }
