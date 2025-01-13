@@ -1,6 +1,7 @@
 package com.example.pagging3hw
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             viewModel.data.collectLatest {
+                Log.d("@@@","data ${viewModel.data}")
                 filmsAdapter.submitData(it)
             }
         }

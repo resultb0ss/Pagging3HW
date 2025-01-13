@@ -6,9 +6,10 @@ import androidx.paging.PagingSource.LoadResult
 import androidx.paging.PagingState
 import com.example.pagging3hw.RetrofitHelper.ApiInterface
 import com.example.pagging3hw.RetrofitHelper.FilmsModels.Doc
+import jakarta.inject.Inject
 import retrofit2.HttpException
 
-class MainPagingSource(
+class MainPagingSource @Inject constructor(
 
     private val apiInterface: ApiInterface,
 
