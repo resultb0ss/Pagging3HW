@@ -3,17 +3,12 @@ package com.example.pagging3hw
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pagging3hw.RetrofitHelper.ApiInterface
-import com.example.pagging3hw.RetrofitHelper.RetrofitInstance
 import com.example.pagging3hw.databinding.ActivityMainBinding
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -29,9 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        val factory = MainViewModelFactory(RetrofitInstance.provideRetrofitInstance())
-//        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
 
         val filmsAdapter = MainAdapter()
         binding.recyclerView.apply {
