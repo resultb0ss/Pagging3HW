@@ -24,15 +24,3 @@ class MainViewModel @Inject constructor(
         }.flow.cachedIn(viewModelScope)
 }
 
-
-//class MainViewModelFactory(
-//    private val apiInterface: ApiInterface
-//) : ViewModelProvider.Factory {
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-//            return MainViewModel(apiInterface) as T
-//        }
-//        throw IllegalArgumentException("Неизвестный класс ViewModel")
-//    }
-//}
-
