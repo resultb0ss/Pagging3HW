@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pagging3hw.RetrofitHelper.FilmsModels.Doc
 import com.example.pagging3hw.databinding.ListItemBinding
-import javax.inject.Inject
 
-class MainAdapter @Inject constructor() :
+class MainAdapter :
     PagingDataAdapter<Doc, MainAdapter.MainViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -39,9 +38,9 @@ class MainAdapter @Inject constructor() :
     ) {
         val item = getItem(position)
         holder.binding.apply {
-            textViewName.text = item?.name
-            textViewRating.text = item?.rating?.kp.toString()
-            textViewYear.text = item?.year.toString()
+            textViewName.text = item?.name ?: "Нет названия"
+            textViewRating.text = item?.rating?.kp.toString() ?: "Нет рейтинга"
+            textViewYear.text = item?.year.toString() ?: "Нет года"
         }
     }
 

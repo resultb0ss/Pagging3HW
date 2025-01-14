@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pagging3hw.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import jakarta.inject.Inject
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -18,11 +17,8 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-
-    @Inject
-    lateinit var filmsAdapter: MainAdapter
-
     private val viewModel: MainViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +26,12 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val filmsAdapter = MainAdapter()
         binding.recyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = filmsAdapter
+            layoutManager = LinearLayoutManager(context)
+            adapter = filmsAdapter.withLoadStateFooter(MainLoadStateAdapter())
             setHasFixedSize(true)
         }
-        binding.recyclerView.adapter = filmsAdapter.withLoadStateFooter(MainLoadStateAdapter())
-
 
         lifecycleScope.launch {
             Log.d("@@@", "Передаем данные в адаптер для отображения")
