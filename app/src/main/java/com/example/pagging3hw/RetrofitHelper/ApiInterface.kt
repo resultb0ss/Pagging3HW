@@ -1,6 +1,7 @@
 package com.example.pagging3hw.RetrofitHelper
 
 
+import android.util.Log
 import com.example.pagging3hw.RetrofitHelper.FilmsModels.Films
 import retrofit2.Response
 import retrofit2.http.GET
@@ -16,6 +17,9 @@ interface ApiInterface {
     suspend fun getFilms(
         @Query("limit") limit: Int = 30,
         @Query("page") page: Int,
-    ): Response<Films>
+    ): Response<Films> {
+        Log.d("@@@", "Запрос отправлен: limit=$limit, page=$page")
+        return this.getFilms(limit,page)
+    }
 
 }
