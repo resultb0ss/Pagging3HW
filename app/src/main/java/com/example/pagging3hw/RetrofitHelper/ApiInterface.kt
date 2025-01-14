@@ -18,8 +18,7 @@ interface ApiInterface {
         @Query("limit") limit: Int = 30,
         @Query("page") page: Int,
     ): Response<Films> {
-        Log.d("@@@", "Запрос отправлен: limit=$limit, page=$page")
-        return this.getFilms(limit,page)
+        return this.getFilms(limit, page)
     }
 
 }

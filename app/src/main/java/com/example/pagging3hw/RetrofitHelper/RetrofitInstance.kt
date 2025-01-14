@@ -1,6 +1,5 @@
 package com.example.pagging3hw.RetrofitHelper
 
-import com.example.pagging3hw.ApiRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

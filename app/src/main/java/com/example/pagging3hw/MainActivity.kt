@@ -34,9 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-            Log.d("@@@", "Передаем данные в адаптер для отображения")
             viewModel.data.collectLatest {
-                Log.d("@@@", "Передали данные в адаптер для отображения")
                 filmsAdapter.submitData(it)
             }
         }
