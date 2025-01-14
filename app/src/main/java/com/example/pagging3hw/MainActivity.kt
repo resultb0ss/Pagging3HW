@@ -1,13 +1,13 @@
 package com.example.pagging3hw
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pagging3hw.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
 
+    @Inject
+    lateinit var filmsAdapter: MainAdapter
+
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val filmsAdapter = MainAdapter()
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager =
+                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = filmsAdapter
             setHasFixedSize(true)
         }
@@ -37,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             viewModel.data.collectLatest {
-                Log.d("@@@","data ${viewModel.data}")
                 filmsAdapter.submitData(it)
             }
         }

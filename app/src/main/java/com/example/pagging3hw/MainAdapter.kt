@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pagging3hw.RetrofitHelper.FilmsModels.Doc
 import com.example.pagging3hw.databinding.ListItemBinding
+import javax.inject.Inject
 
-class MainAdapter : PagingDataAdapter<Doc, MainAdapter.MainViewHolder>(DIFF_CALLBACK) {
+class MainAdapter @Inject constructor() :
+    PagingDataAdapter<Doc, MainAdapter.MainViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Doc>() {

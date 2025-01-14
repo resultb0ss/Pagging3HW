@@ -8,7 +8,8 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pagging3hw.databinding.LoadStateViewBinding
 
-class MainLoadStateAdapter : LoadStateAdapter<MainLoadStateAdapter.LoadStateViewHolder>() {
+class MainLoadStateAdapter :
+    LoadStateAdapter<MainLoadStateAdapter.LoadStateViewHolder>() {
 
     override fun onBindViewHolder(
         holder: LoadStateViewHolder,

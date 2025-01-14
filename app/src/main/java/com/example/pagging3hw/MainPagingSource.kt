@@ -4,14 +4,15 @@ package com.example.pagging3hw
 import androidx.paging.PagingSource
 import androidx.paging.PagingSource.LoadResult
 import androidx.paging.PagingState
-import com.example.pagging3hw.RetrofitHelper.ApiInterface
 import com.example.pagging3hw.RetrofitHelper.FilmsModels.Doc
 import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import retrofit2.HttpException
 
+@Singleton
 class MainPagingSource @Inject constructor(
 
-    private val apiInterface: ApiInterface,
+    private val repository: ApiRepository,
 
     ) : PagingSource<Int, Doc>() {
 
@@ -26,7 +27,7 @@ class MainPagingSource @Inject constructor(
         val page: Int = params.key ?: 1
         val pageSize: Int = params.loadSize
 
-        val response = apiInterface.getFilms(pageSize, page)
+        val response = repository.getFilms(pageSize, page)
         if (response.isSuccessful) {
             val films = checkNotNull(response.body()).docs
             val nextKey = if (films.size < pageSize) null else page + 1
